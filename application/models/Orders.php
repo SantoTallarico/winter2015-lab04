@@ -31,11 +31,14 @@ class Orders extends MY_Model {
 
     // calculate the total for an order
     function total($num) {
+        //getting own access to orderitems
         $CI = &get_instance();
         $CI->load->model('orderitems');
         
+        //get all the items in this order
         $items = $this->orderitems->some('order', $num);
         
+        //add up all the items
         $result = 0;
         foreach ($items as $item)
         {
